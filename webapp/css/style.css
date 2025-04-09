@@ -1,0 +1,27 @@
+
+/* Media query para pantallas pequeñas (dispositivos móviles) */
+@media (max-width: 600px) {
+    #filtersContainer {
+        flex-direction: column; /* Apilar los controles verticalmente */
+        align-items: stretch; /* Hacer que los controles ocupen todo el ancho */
+    }
+
+    .filterControl {
+        width: 100% !important; /* Forzar que los controles ocupen todo el ancho */
+        min-width: unset; /* Eliminar el ancho mínimo en móviles */
+        margin-bottom: 10px; /* Añadir espacio entre los controles */
+        height: 44px; /* Aumentar el alto en móviles para mejor usabilidad */
+        line-height: 44px;
+    }
+
+    /* Ajustar el alto de los Select en móviles */
+    .selectControl .sapMSlt {
+        line-height: 44px;
+    }
+
+    /* Ajustar el botón en móviles */
+    .filterControl.sapMBtn {
+        height: 44px;
+        line-height: 44px;
+    }
+}

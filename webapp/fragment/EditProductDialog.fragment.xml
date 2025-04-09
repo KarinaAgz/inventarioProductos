@@ -1,0 +1,53 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        title="{i18n>editProduct}"
+        contentWidth="400px"
+    >
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="Nombre del Producto" />
+                <Input value="{edit>/ProductName}" />
+                <Label text="Precio Unitario" />
+                <Input
+                    value="{edit>/UnitPrice}"
+                    type="Number"
+                />
+                <Label text="Unidades en stock" />
+                <Input
+                    value="{edit>/UnitsInStock}"
+                    type="Number"
+                />
+                <Label text="Categoria" />
+                <Select
+                    selectedKey="{edit>/CategoryID}"
+                    items="{path:'/Categories'}"
+                >
+                    <core:Item
+                        key="{CategoryID}"
+                        text="{CategoryName}"
+                    />
+                </Select>
+                <Label text="Estado" />
+                <Select selectedKey="{edit>/Discontinued}">
+                    <core:Item
+                        key="false"
+                        text="Activo"
+                    />
+                    <core:Item
+                        key="true"
+                        text="Discontinuado"
+                    />
+                </Select>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>save}" type="Emphasized" press="onSaveProduct"/>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>cancel}" press="onCancelEdit"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

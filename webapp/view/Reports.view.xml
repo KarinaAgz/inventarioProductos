@@ -1,0 +1,54 @@
+<mvc:View
+    controllerName="logaligroup.inventorymanager.controller.Reports"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <VBox fitContainer="true">
+        <Title text="{i18n>reportsTitle}" level="H2"/>
+        <Title text="{i18n>resumenCategoria}" level="H3"/>
+        <Table
+            id="categoryTable"
+            items="{reportModel>/CategorySummary}">
+            <columns>
+                <Column>
+                    <Text text="Categoría"/>
+                </Column>
+                <Column>
+                    <Text text="Cantidad"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{reportModel>CategoryName}"/>
+                        <Text text="{reportModel>Count}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <Title text="{i18n>ResumenStock}" level="H3"/>
+        <Table
+            id="stockTable"
+            items="{reportModel>/StockSummary}">
+            <columns>
+                <Column>
+                    <Text text="Estado"/>
+                </Column>
+                <Column>
+                    <Text text="Cantidad"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{reportModel>Status}"/>
+                        <Text text="{reportModel>Count}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <Button
+            text="Descargar PDF"
+            press="onDownloadPDF"
+            type="Emphasized"/>
+    </VBox>
+</mvc:View>

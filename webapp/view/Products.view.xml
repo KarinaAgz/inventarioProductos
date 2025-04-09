@@ -1,0 +1,154 @@
+<mvc:View
+    controllerName="logaligroup.inventorymanager.controller.Products"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <VBox fitContainer="true">
+        <Title text="{i18n>productsTableTitle}" level="H2"/>
+        <FlexBox
+            id="filtersContainer"
+            direction="Row"
+            wrap="Wrap"
+            alignItems="Center"
+            class="sapUiSmallMargin">
+            <items>
+                <SearchField
+                    id="searchField"
+                    placeholder="{i18n>searchFieldPlaceholder}"
+                    width="100%"
+                    liveChange="onFilter"
+                    class="filterControl"/>
+                <Input
+                    id="priceMinFilter"
+                    type="Number"
+                    placeholder="{i18n>priceMinFilterPlaceholder}"
+                    width="100%"
+                    liveChange="onFilter"
+                    class="filterControl"/>
+                <Input
+                    id="priceMaxFilter"
+                    type="Number"
+                    placeholder="{i18n>priceMaxFilterPlaceholder}"
+                    width="100%"
+                    liveChange="onFilter"
+                    class="filterControl"/>
+                <Input
+                    id="stockMinFilter"
+                    type="Number"
+                    placeholder="{i18n>stockMinFilterPlaceholder}"
+                    width="100%"
+                    liveChange="onFilter"
+                    class="filterControl"/>
+                <Select
+                    id="discontinuedFilter"
+                    
+                    change="onFilter"
+                    class="filterControl">
+                    <items>
+                        <core:Item key="all" text="{i18n>discontinuedFilterAll}" />
+                        <core:Item key="active" text="{i18n>discontinuedFilterActive}"/>
+                        <core:Item key="discontinued" text="{i18n>discontinuedFilterDiscontinued}"/>
+                    </items>
+                </Select>
+                <Select
+                    id="categoryFilter"
+                    
+                    items="{path: '/Categories', parameters: { $count: true }}"
+                    change="onFilter"
+                    class="filterControl">
+                    <core:Item key="{CategoryID}" text="{CategoryName}"/>
+                </Select>
+                <ToolbarSeparator />
+                <Button
+                    text="{i18n>clearFiltersButtonText}"
+                    press="onClearFilters"
+                    type="Emphasized"
+                    class="filterControl"/>
+            </items>
+        </FlexBox>
+        <Table
+            id="productsTable"
+            items="{path: '/Products', parameters: { $count: true }}"
+            mode="SingleSelectMaster"
+            selectionChange="onSelectionChange"
+            growing="true"
+            growingThreshold="20">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Text text="Total: {/Products/$count}"/>
+                    <Text text="Mostrados: {app>/filteredCount}"/>
+                    <ToolbarSpacer/>
+                    <Button
+                        icon="sap-icon://refresh"
+                        tooltip="Refrescar"
+                        press="onRefresh"/>
+                    <Button
+                        text="Exportar a Excel"
+                        icon="sap-icon://excel-attachment"
+                        press="onExport"
+                        type="Emphasized"/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnID}"/>
+                </Column>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnName}"/>
+                </Column>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnPrice}"/>
+                </Column>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnStock}"/>
+                </Column>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnCategory}"/>
+                </Column>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnStatus}"/>
+                </Column>
+                <Column width="auto"
+                        demandPopin="true"
+                        minScreenWidth="Tablet">
+                    <Text text="{i18n>columnActions}"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{ProductID}"/>
+                        <Text text="{ProductName}"/>
+                        <Text text="{UnitPrice}"/>
+                        <Text text="{UnitsInStock}"/>
+                        <Text text="{CategoryID}"/>
+                        <Text text="{= ${Discontinued} ? 'Discontinuado' : 'Activo'}"/>
+                        <HBox>
+                            <Button
+                                icon="sap-icon://edit"
+                                press="onEditProduct"
+                                tooltip="Editar"/>
+                            <Button
+                                icon="sap-icon://delete"
+                                press="onDeleteProduct"
+                                tooltip="Eliminar"
+                                type="Reject"/>
+                        </HBox>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </VBox>
+</mvc:View>

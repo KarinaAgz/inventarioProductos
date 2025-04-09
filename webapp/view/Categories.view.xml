@@ -1,0 +1,26 @@
+<mvc:View
+    controllerName="logaligroup.inventorymanager.controller.Categories"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <VBox fitContainer="true">
+        <Title text="{i18n>categoriesListTitle}" level="H2"/>
+        <Toolbar>
+            <Button
+                text="{i18n>addCategory}"
+                icon="sap-icon://add"
+                press="onAddCategory"
+                type="Emphasized"/>
+        </Toolbar>
+        <List
+            id="categoriesList"
+            items="{path: '/Categories', parameters: { $count: true }}">
+            <items>
+                <StandardListItem
+                    title="{CategoryName}"
+                    description="{Description}"
+                    icon="sap-icon://group"/>
+            </items>
+        </List>
+        
+    </VBox>
+</mvc:View>

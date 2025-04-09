@@ -1,0 +1,32 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="logaligroup.inventorymanager.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>appTitle}" titleAlignment="Center" titleLevel="H1" backgroundDesign="Solid" >
+            <IconTabBar id="tabBar" selectedKey="products" class="customIconTabBar sapUiMediumMarginTop sapUiSmallMarginBottom sapUiContentPadding"
+            expandable="false" stretchContentHeight="true">
+                <items>
+                    <IconTabFilter key="products" text="{i18n>productsTab}" icon="sap-icon://product" >
+                        <core:Icon src="sap-icon://product"
+                        class="sapUiPositive"
+                        size="2rem"/>
+                       <mvc:XMLView  viewName="logaligroup.inventorymanager.view.Products"/>
+                    </IconTabFilter>
+                    <IconTabFilter key="categories" text="{i18n>categoriesTab}" icon="sap-icon://group" >
+                        <core:Icon src="sap-icon://group"
+                        class="sapUiInformative"
+                        size="2rem"/>
+                        <mvc:XMLView viewName="logaligroup.inventorymanager.view.Categories"/>
+                    </IconTabFilter>
+
+                    <IconTabFilter key="reports" text="{i18n>reportsTab}" icon="sap-icon://bar-chart">
+                        <core:Icon src="sap-icon://bar-chart"
+                        class="sapUiCritical"
+                        size="2rem"/>
+                        <mvc:XMLView viewName="logaligroup.inventorymanager.view.Reports"/>
+
+                    </IconTabFilter>
+                </items>
+            
+            </IconTabBar>
+        </Page>
+</mvc:View>

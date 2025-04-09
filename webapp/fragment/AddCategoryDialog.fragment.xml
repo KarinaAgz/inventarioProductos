@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog title="{i18n>addCategory}" contentWidth="400px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="Nombre Categoria"/>
+                <Input  value="{newCategory>/CategoryName}"/>
+                <Label  text="Descripción"/>
+                <TextArea value="{newCategory>/Description}"/>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="save" type="Emphasized" press="onSaveCategory"/>
+        </beginButton>
+        <endButton>
+            <Button text="cancel" press="onCancekAddCategory"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
